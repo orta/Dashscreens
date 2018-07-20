@@ -1,0 +1,366 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		606B3B0321010D9F00B8314C /* Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 606B3B0221010D9F00B8314C /* Extensions.m */; };
+		6088E34F210102E2008E1EF3 /* ScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6088E34D210102E2008E1EF3 /* ScreenViewController.m */; };
+		6088E350210102E2008E1EF3 /* ScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6088E34E210102E2008E1EF3 /* ScreenViewController.xib */; };
+		6088E353210104BC008E1EF3 /* APIController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6088E352210104BC008E1EF3 /* APIController.m */; };
+		6088E356210104D8008E1EF3 /* Link.m in Sources */ = {isa = PBXBuildFile; fileRef = 6088E355210104D8008E1EF3 /* Link.m */; };
+		60CD522520E16EB800A94DE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60CD522420E16EB800A94DE0 /* AppDelegate.m */; };
+		60CD522720E16EBA00A94DE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60CD522620E16EBA00A94DE0 /* Assets.xcassets */; };
+		60CD522A20E16EBA00A94DE0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60CD522820E16EBA00A94DE0 /* MainMenu.xib */; };
+		60CD522D20E16EBA00A94DE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60CD522C20E16EBA00A94DE0 /* main.m */; };
+		60CD523620E1710600A94DE0 /* PrefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60CD523520E1710600A94DE0 /* PrefsController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		606B3B0121010D9E00B8314C /* Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Extensions.h; sourceTree = "<group>"; };
+		606B3B0221010D9F00B8314C /* Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Extensions.m; sourceTree = "<group>"; };
+		6088E34C210102E2008E1EF3 /* ScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenViewController.h; sourceTree = "<group>"; };
+		6088E34D210102E2008E1EF3 /* ScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScreenViewController.m; sourceTree = "<group>"; };
+		6088E34E210102E2008E1EF3 /* ScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScreenViewController.xib; sourceTree = "<group>"; };
+		6088E351210104BC008E1EF3 /* APIController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIController.h; sourceTree = "<group>"; };
+		6088E352210104BC008E1EF3 /* APIController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIController.m; sourceTree = "<group>"; };
+		6088E354210104D8008E1EF3 /* Link.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Link.h; sourceTree = "<group>"; };
+		6088E355210104D8008E1EF3 /* Link.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Link.m; sourceTree = "<group>"; };
+		60CD522020E16EB800A94DE0 /* Dashscreens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dashscreens.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		60CD522320E16EB800A94DE0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		60CD522420E16EB800A94DE0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		60CD522620E16EBA00A94DE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		60CD522920E16EBA00A94DE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		60CD522B20E16EBA00A94DE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60CD522C20E16EBA00A94DE0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		60CD522E20E16EBA00A94DE0 /* Dashscreens.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dashscreens.entitlements; sourceTree = "<group>"; };
+		60CD523420E1710600A94DE0 /* PrefsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefsController.h; sourceTree = "<group>"; };
+		60CD523520E1710600A94DE0 /* PrefsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrefsController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		60CD521D20E16EB800A94DE0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		60CD521720E16EB800A94DE0 = {
+			isa = PBXGroup;
+			children = (
+				60CD522220E16EB800A94DE0 /* Dashscreens */,
+				60CD522120E16EB800A94DE0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		60CD522120E16EB800A94DE0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				60CD522020E16EB800A94DE0 /* Dashscreens.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		60CD522220E16EB800A94DE0 /* Dashscreens */ = {
+			isa = PBXGroup;
+			children = (
+				60CD522320E16EB800A94DE0 /* AppDelegate.h */,
+				60CD522420E16EB800A94DE0 /* AppDelegate.m */,
+				60CD522620E16EBA00A94DE0 /* Assets.xcassets */,
+				60CD522820E16EBA00A94DE0 /* MainMenu.xib */,
+				60CD522B20E16EBA00A94DE0 /* Info.plist */,
+				60CD522C20E16EBA00A94DE0 /* main.m */,
+				60CD522E20E16EBA00A94DE0 /* Dashscreens.entitlements */,
+				60CD523420E1710600A94DE0 /* PrefsController.h */,
+				60CD523520E1710600A94DE0 /* PrefsController.m */,
+				6088E34C210102E2008E1EF3 /* ScreenViewController.h */,
+				6088E34D210102E2008E1EF3 /* ScreenViewController.m */,
+				6088E34E210102E2008E1EF3 /* ScreenViewController.xib */,
+				6088E351210104BC008E1EF3 /* APIController.h */,
+				6088E352210104BC008E1EF3 /* APIController.m */,
+				6088E354210104D8008E1EF3 /* Link.h */,
+				6088E355210104D8008E1EF3 /* Link.m */,
+				606B3B0121010D9E00B8314C /* Extensions.h */,
+				606B3B0221010D9F00B8314C /* Extensions.m */,
+			);
+			path = Dashscreens;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		60CD521F20E16EB800A94DE0 /* Dashscreens */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 60CD523120E16EBA00A94DE0 /* Build configuration list for PBXNativeTarget "Dashscreens" */;
+			buildPhases = (
+				60CD521C20E16EB800A94DE0 /* Sources */,
+				60CD521D20E16EB800A94DE0 /* Frameworks */,
+				60CD521E20E16EB800A94DE0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Dashscreens;
+			productName = Dashscreens;
+			productReference = 60CD522020E16EB800A94DE0 /* Dashscreens.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		60CD521820E16EB800A94DE0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Orta Therox";
+				TargetAttributes = {
+					60CD521F20E16EB800A94DE0 = {
+						CreatedOnToolsVersion = 9.4;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 60CD521B20E16EB800A94DE0 /* Build configuration list for PBXProject "Dashscreens" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 60CD521720E16EB800A94DE0;
+			productRefGroup = 60CD522120E16EB800A94DE0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				60CD521F20E16EB800A94DE0 /* Dashscreens */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		60CD521E20E16EB800A94DE0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60CD522720E16EBA00A94DE0 /* Assets.xcassets in Resources */,
+				6088E350210102E2008E1EF3 /* ScreenViewController.xib in Resources */,
+				60CD522A20E16EBA00A94DE0 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		60CD521C20E16EB800A94DE0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				60CD522D20E16EBA00A94DE0 /* main.m in Sources */,
+				6088E356210104D8008E1EF3 /* Link.m in Sources */,
+				6088E353210104BC008E1EF3 /* APIController.m in Sources */,
+				606B3B0321010D9F00B8314C /* Extensions.m in Sources */,
+				60CD522520E16EB800A94DE0 /* AppDelegate.m in Sources */,
+				60CD523620E1710600A94DE0 /* PrefsController.m in Sources */,
+				6088E34F210102E2008E1EF3 /* ScreenViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		60CD522820E16EBA00A94DE0 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				60CD522920E16EBA00A94DE0 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		60CD522F20E16EBA00A94DE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		60CD523020E16EBA00A94DE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		60CD523220E16EBA00A94DE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Dashscreens/Dashscreens.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 23KMWZ572J;
+				INFOPLIST_FILE = Dashscreens/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = io.orta.Dashscreens;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		60CD523320E16EBA00A94DE0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Dashscreens/Dashscreens.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 23KMWZ572J;
+				INFOPLIST_FILE = Dashscreens/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = io.orta.Dashscreens;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		60CD521B20E16EB800A94DE0 /* Build configuration list for PBXProject "Dashscreens" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60CD522F20E16EBA00A94DE0 /* Debug */,
+				60CD523020E16EBA00A94DE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		60CD523120E16EBA00A94DE0 /* Build configuration list for PBXNativeTarget "Dashscreens" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				60CD523220E16EBA00A94DE0 /* Debug */,
+				60CD523320E16EBA00A94DE0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 60CD521820E16EB800A94DE0 /* Project object */;
+}
