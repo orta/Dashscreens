@@ -32,6 +32,7 @@
         // then edit environment
     }
 
+//    [request setValue:@"" forHTTPHeaderField:@"secret"];
     [request setValue:secret forHTTPHeaderField:@"secret"];
 
     NSURLSession *session = [NSURLSession sharedSession];

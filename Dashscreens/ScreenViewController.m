@@ -15,7 +15,10 @@
 
 @interface ScreenViewController () <WKUIDelegate, WKNavigationDelegate>
 @property (strong) WKProcessPool *webViewProcessPool;
-@property (weak) WKWebView *webView;
+
+@property (strong) WKWebView *backWebView;
+@property (strong) WKWebView *frontWebView;
+
 @property NSInteger index;
 @end
 
@@ -34,14 +37,20 @@
     config.processPool = [self processPool];
     config.preferences._developerExtrasEnabled = YES;
     config.preferences.javaScriptCanOpenWindowsAutomatically = YES;
-    config.applicationNameForUserAgent = @"Safari";
 
     WKWebView *webview = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:config];
-    [self.view addSubview:webview];
-    self.webView = webview;
+    webview.UIDelegate = self;
+    webview.navigationDelegate = self;
 
-    self.webView.UIDelegate = self;
-    self.webView.navigationDelegate = self;
+    WKWebView *webview2 = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:config];
+    webview2.UIDelegate = self;
+    webview2.navigationDelegate = self;
+
+    [self.view addSubview:webview2];
+    [self.view addSubview:webview];
+
+    self.frontWebView = webview;
+    self.backWebView = webview2;
 
     self.index = -1;
     [self showNextLink];
@@ -64,18 +73,37 @@
     return nil;
 }
 
+// Flips between two WKWebViews that keeps the data
+// basically trying to avoid jumping content
+
 - (void)showNextLink
 {
     self.index++;
-    if (self.index == self.links.count) {
+    if (self.index + 1 == self.links.count) {
         self.index = 0;
     }
 
     Link *link = self.links[self.index];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:link.href]];
-    [self.webView loadRequest:request];
-}
 
+    // Move to front
+    [self.backWebView removeFromSuperview];
+    [self.view addSubview:self.backWebView];
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:link.href]];
+    [self.frontWebView loadRequest:request];
+
+    NSLog(@"Showing: %@", link.href);
+    NSLog(@"on: %@", self.backWebView);
+    if (!self.debug) {
+        // the 4 is loading time
+        [self performSelector:@selector(showNextLink) withObject:nil afterDelay:link.time + 4];
+    }
+
+    // Switch the references
+    WKWebView *intermediary = self.backWebView;
+    self.backWebView = self.frontWebView;
+    self.frontWebView = intermediary;
+}
 
 
 @end

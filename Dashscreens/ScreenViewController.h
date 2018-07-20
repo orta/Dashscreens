@@ -11,4 +11,5 @@
 
 @interface ScreenViewController : NSViewController
 @property NSArray<Link *> *links;
+@property BOOL debug;
 @end

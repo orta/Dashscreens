@@ -14,6 +14,6 @@
 
 @property (nonatomic, copy) NSString *href;
 @property (nonatomic, assign) CGFloat time;
-@property (nonatomic, assign) NSArray<NSString *> *tags;
+@property (nonatomic, copy) NSArray<NSString *> *tags;
 
 @end
