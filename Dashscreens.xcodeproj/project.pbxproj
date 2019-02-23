@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A2F27CC2220DEA1004998DF /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F27CB2220DEA1004998DF /* Tag.m */; };
+		3A2F27CF22219871004998DF /* NSObject+NSScreen_DisplayInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F27CE22219871004998DF /* NSObject+NSScreen_DisplayInfo.m */; };
 		606B3B0321010D9F00B8314C /* Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 606B3B0221010D9F00B8314C /* Extensions.m */; };
 		6088E34F210102E2008E1EF3 /* ScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6088E34D210102E2008E1EF3 /* ScreenViewController.m */; };
 		6088E350210102E2008E1EF3 /* ScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6088E34E210102E2008E1EF3 /* ScreenViewController.xib */; };
@@ -25,6 +26,8 @@
 		197B6564BD28C4A1F8618AD3 /* libPods-Dashscreens.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dashscreens.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A2F27CA2220DEA1004998DF /* Tag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
 		3A2F27CB2220DEA1004998DF /* Tag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		3A2F27CD22219871004998DF /* NSObject+NSScreen_DisplayInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+NSScreen_DisplayInfo.h"; sourceTree = "<group>"; };
+		3A2F27CE22219871004998DF /* NSObject+NSScreen_DisplayInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NSScreen_DisplayInfo.m"; sourceTree = "<group>"; };
 		57EB058DB08771291C9BED5B /* Pods-Dashscreens.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dashscreens.release.xcconfig"; path = "Target Support Files/Pods-Dashscreens/Pods-Dashscreens.release.xcconfig"; sourceTree = "<group>"; };
 		606B3B0121010D9E00B8314C /* Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Extensions.h; sourceTree = "<group>"; };
 		606B3B0221010D9F00B8314C /* Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Extensions.m; sourceTree = "<group>"; };
@@ -101,6 +104,8 @@
 				606B3B0221010D9F00B8314C /* Extensions.m */,
 				3A2F27CA2220DEA1004998DF /* Tag.h */,
 				3A2F27CB2220DEA1004998DF /* Tag.m */,
+				3A2F27CD22219871004998DF /* NSObject+NSScreen_DisplayInfo.h */,
+				3A2F27CE22219871004998DF /* NSObject+NSScreen_DisplayInfo.m */,
 			);
 			path = Dashscreens;
 			sourceTree = "<group>";
@@ -226,6 +231,7 @@
 				60CD522D20E16EBA00A94DE0 /* main.m in Sources */,
 				6088E356210104D8008E1EF3 /* Link.m in Sources */,
 				6088E353210104BC008E1EF3 /* APIController.m in Sources */,
+				3A2F27CF22219871004998DF /* NSObject+NSScreen_DisplayInfo.m in Sources */,
 				606B3B0321010D9F00B8314C /* Extensions.m in Sources */,
 				3A2F27CC2220DEA1004998DF /* Tag.m in Sources */,
 				60CD522520E16EB800A94DE0 /* AppDelegate.m in Sources */,

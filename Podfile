@@ -1,7 +1,7 @@
-plugin 'cocoapods-keys', project: 'Dashscreens', keys: ['TeamNavSecret']
+plugin 'cocoapods-keys', project: 'Dashscreens', keys: ['TeamNavSecret', 'dashboardLinksCSVURL']
 
 platform :osx, '10.11'
 
 target 'Dashscreens' do
-  pod 'AFNetworking'
+  pod 'CHCSVParser'
 end

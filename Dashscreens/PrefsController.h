@@ -13,6 +13,7 @@
 
 @interface PrefsController : NSObject <NSTableViewDelegate>
 
+/// The main window for setting up your dashboards
 @property (weak) IBOutlet NSWindow *prefsWindow;
 
 - (IBAction)newHalfWindow:(id)sender;
@@ -26,6 +27,10 @@
 /// What are all the tags
 @property NSArray<Tag *> *tags;
 /// Have we got stuff?
-@property BOOL hasLinks;
+@property BOOL hasActiveLinks;
 
+/// Which screen is this window currently on?
+@property NSString *currentScreenDisplayName;
+
+- (void)screensDidUpdate;
 @end

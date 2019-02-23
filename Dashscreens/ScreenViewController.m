@@ -21,14 +21,13 @@
 @property (strong) WKWebView *frontWebView;
 
 @property NSInteger index;
+@property Link *frontLink;
 @end
 
 @implementation ScreenViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
+/// Set up 2 WKWebViews which cycle between the pages, this
+/// is done to remove loading flashes ideally.
 
 - (void)viewWillAppear
 {
@@ -42,10 +41,12 @@
     WKWebView *webview = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:config];
     webview.UIDelegate = self;
     webview.navigationDelegate = self;
+    webview.customUserAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Safari/605.1.15";
 
     WKWebView *webview2 = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:config];
     webview2.UIDelegate = self;
     webview2.navigationDelegate = self;
+    webview2.customUserAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Safari/605.1.15";
 
     [self.view addSubview:webview2];
     [self.view addSubview:webview];
@@ -53,7 +54,11 @@
     self.frontWebView = webview;
     self.backWebView = webview2;
 
-    // It's weird, but this ensures both of the webviews work
+    self.backWebView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+    self.frontWebView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
+
+    // It's weird, but this ensures both of the webviews work by
+    // making them both the initial link.
     self.index = -1;
     [self showNextLink];
     self.index = -1;
@@ -100,7 +105,7 @@
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
-    Link *link = [self linkForURL:webView.URL.absoluteString];
+    Link *link = self.frontLink;//[self linkForURL:webView.URL.absoluteString];
 
     // We want to expand all of the individual pages from a project root for a galleries.io link
     // so that we can be lazy, and just say the main project.
@@ -127,6 +132,22 @@
             }];
         });
     }
+
+    // Hide the chrome around the chat in slack
+    if ([link.type isEqualToString:@"slack"]) {
+        // This page has a loading screen, so we need to give time for that to happen
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            NSString *removeSidebar = @"document.getElementsByClassName('client_channels_list_container')[0].style.display = 'none';";
+            NSString *removeInput = @"document.getElementById('footer').style.display = 'none';";
+            NSString *removeHeader = @"document.getElementById('client_header').style.display = 'none';";
+            NSString *removeBanner = @"document.getElementById('banner').style.display = 'none';";
+
+            NSString *js = [@[removeSidebar, removeInput, removeHeader, removeBanner] componentsJoinedByString:@""];
+
+            [webView evaluateJavaScript:js completionHandler:^(id _Nullable value, NSError * _Nullable error) {}];
+        });
+    }
+
 }
 
 // Flips between two WKWebViews that keeps the data
@@ -150,10 +171,12 @@
 
     NSLog(@"Showing: %@", link.href);
     NSLog(@"on: %@", self.backWebView);
+    self.frontLink = link;
+
     if (!self.debug) {
         // the 4 is loading time
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showNextLink) object:nil];
-        [self performSelector:@selector(showNextLink) withObject:nil afterDelay:link.time + 4];
+        [self performSelector:@selector(showNextLink) withObject:nil afterDelay:(link.time * 60) + 4];
     }
 
     // Switch the references

@@ -13,7 +13,7 @@
 
 @interface APIController : NSObject
 
-- (void)getLinksFromTeamNav;
+- (void)getLinksFromGoogSheets;
 
 @property (weak) IBOutlet PrefsController *prefs;
 

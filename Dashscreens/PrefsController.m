@@ -12,10 +12,11 @@
 #import "APIController.h"
 #import "Link.h"
 #import "Extensions.h"
+#import "NSObject+NSScreen_DisplayInfo.h"
 
 @interface PrefsController()
 @property (weak) IBOutlet APIController *api;
-@property (weak) IBOutlet NSTextField *tagsTextField;
+@property (strong) NSArray <NSWindow *>*windows;
 @end
 
 @implementation PrefsController
@@ -24,21 +25,13 @@
 {
     [super awakeFromNib];
     [self.prefsWindow becomeFirstResponder];
-}
 
-- (NSArray <Link*> *)filteredLinks
-{
-    return [self.allLinks filter:^BOOL(Link *link) {
-        NSArray *tags = [self.tagsTextField.stringValue componentsSeparatedByString:@" "];
-        for (NSString *tag in tags) {
-            for (NSString *linkTag in link.tags) {
-                if ([linkTag isEqualToString:tag]) {
-                    return YES;
-                }
-            }
-        }
-        return NO;
-    }];
+    // somehow this is called a bunch of times
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        [self startReloadLoop];
+        [self startScreenCheckLoop];
+    });
 }
 
 - (IBAction)newHalfWindow:(id)sender
@@ -59,7 +52,7 @@
     webVC.debug = self.writableMode;
 
     NSWindow *window = [NSWindow windowWithContentViewController:webVC];
-    if(!self.writableMode) {
+    if (!self.writableMode) {
         window.styleMask = NSWindowStyleMaskBorderless;
         window.hasShadow = NO;
     }
@@ -78,7 +71,8 @@
     [window makeFirstResponder:window];
 }
 
-- (IBAction)newFullScreenWindow:(id)sender {
+- (IBAction)newFullScreenWindow:(id)sender
+{
     NSWindow *window = [self generateWindow];
 
     CGSize size = [NSScreen mainScreen].frame.size;
@@ -88,20 +82,84 @@
     [window makeFirstResponder:window];
 }
 
-
 - (void)tableViewSelectionDidChange:(NSNotification *)notification
 {
     NSTableView *tableview = [notification object];
-    NSIndexSet *selected = [tableview selectedRowIndexes];
+    BOOL isTagSelector = tableview.numberOfColumns == 1;
+    if (isTagSelector) {
+        [self didChangeSelectionForTagTableView:tableview];
+    }
+}
 
-
-
-    self.activeLinks = [self.allLinks filter:^BOOL(Link *link) {
-        NSInteger index = [self.allLinks indexOfObject:link];
-        return [selected containsIndex:index];
+- (void)didChangeSelectionForTagTableView:(NSTableView *)tableView
+{
+    NSIndexSet *selected = [tableView selectedRowIndexes];
+    NSArray <Tag *> *selectedTags =  [self.tags filter:^BOOL(Tag *link) {
+                NSInteger index = [self.tags indexOfObject:link];
+                return [selected containsIndex:index];
     }];
 
 
+    self.activeLinks = [self.allLinks filter:^BOOL(Link *link) {
+        for (Tag *tag in selectedTags) {
+            if ([link.tags containsObject:tag.name]) {
+                return YES;
+            }
+        }
+        return NO;
+    }];
+
+    self.hasActiveLinks = self.activeLinks.count > 0;
+}
+
+- (IBAction)didDoubleClickInHrefs:(NSTableView *)tableView
+{
+    Link *link = self.activeLinks[tableView.selectedRow];
+
+    ScreenViewController *webVC = [[ScreenViewController alloc] init];
+    webVC.links = @[link, link];
+    webVC.debug = YES;
+
+    NSWindow *window = [NSWindow windowWithContentViewController:webVC];
+    CGSize size = [NSScreen mainScreen].frame.size;
+    [window setContentSize: CGSizeMake(size.width/2, size.height)];
+    [window setFrameOrigin:NSPointFromCGPoint(CGPointMake(size.width/2, 0))];
+
+    [window makeKeyAndOrderFront:self];
+    [window makeFirstResponder:window];
+}
+
+- (void)startReloadLoop
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateFromAPI) object:nil];
+    [self performSelector:@selector(updateFromAPI) withObject:nil afterDelay:(2 * 60)];
+    [self updateFromAPI];
+}
+
+- (void)updateFromAPI
+{
+    [self.api getLinksFromGoogSheets];
+}
+
+- (void)startScreenCheckLoop
+{
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(updateDisplayID) object:nil];
+    [self performSelector:@selector(updateDisplayID) withObject:nil afterDelay:(1)];
+    [self updateDisplayID];
+}
+
+- (void)updateDisplayID
+{
+    self.currentScreenDisplayName = [[self.prefsWindow screen] displayName];
+}
+
+- (IBAction)openGitHub:(id)sender
+{
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://github.com/orta/Dashscreens"]];
+}
+
+- (void)screensDidUpdate
+{
 
 }
 

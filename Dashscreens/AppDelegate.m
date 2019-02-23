@@ -7,10 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "PrefsController.h"
 
 @interface AppDelegate ()
-
 @property (weak) IBOutlet NSWindow *window;
+@property (weak) IBOutlet PrefsController *prefs;
 @end
 
 @implementation AppDelegate
@@ -24,5 +25,9 @@
     // Insert code here to tear down your application
 }
 
+- (void)applicationDidChangeScreenParameters:(NSNotification *)notification
+{
+        
+}
 
 @end
