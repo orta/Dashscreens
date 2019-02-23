@@ -34,37 +34,38 @@
     });
 }
 
-- (IBAction)newHalfWindow:(id)sender
-{
-    NSWindow *window = [self generateWindow];
 
-    CGSize size = [NSScreen mainScreen].frame.size;
+- (NSWindow *)generateDashboardWindow
+{
+    ScreenViewController *webVC = [[ScreenViewController alloc] init];
+    webVC.links = self.activeLinks;
+    webVC.debug = NO;
+    webVC.preferredScreenDeviceID = [self.prefsWindow.screen displayID];
+
+    NSWindow *window = [NSWindow windowWithContentViewController:webVC];
+    window.styleMask = NSWindowStyleMaskBorderless;
+    window.hasShadow = NO;
+
+    return window;
+}
+
+- (IBAction)newHalfWindowLeft:(id)sender
+{
+    NSWindow *window = [self generateDashboardWindow];
+
+    CGSize size = self.prefsWindow.screen.frame.size;
     [window setContentSize: CGSizeMake(size.width/2, size.height)];
     [window setFrameOrigin:NSPointFromCGPoint(CGPointMake(0, 0))];
     [window makeKeyAndOrderFront:self];
     [window makeFirstResponder:window];
 }
 
-- (NSWindow *)generateWindow
-{
-    ScreenViewController *webVC = [[ScreenViewController alloc] init];
-    webVC.links = self.activeLinks;
-    webVC.debug = self.writableMode;
-
-    NSWindow *window = [NSWindow windowWithContentViewController:webVC];
-    if (!self.writableMode) {
-        window.styleMask = NSWindowStyleMaskBorderless;
-        window.hasShadow = NO;
-    }
-
-    return window;
-}
 
 - (IBAction)newHalfWindowRight:(id)sender
 {
-    NSWindow *window = [self generateWindow];
+    NSWindow *window = [self generateDashboardWindow];
 
-    CGSize size = [NSScreen mainScreen].frame.size;
+    CGSize size = self.prefsWindow.screen.frame.size;
     [window setContentSize: CGSizeMake(size.width/2, size.height)];
     [window setFrameOrigin:NSPointFromCGPoint(CGPointMake(size.width/2, 0))];
     [window makeKeyAndOrderFront:self];
@@ -73,9 +74,9 @@
 
 - (IBAction)newFullScreenWindow:(id)sender
 {
-    NSWindow *window = [self generateWindow];
+    NSWindow *window = [self generateDashboardWindow];
 
-    CGSize size = [NSScreen mainScreen].frame.size;
+    CGSize size = self.prefsWindow.screen.frame.size;
     [window setContentSize: size];
     [window setFrameOrigin:NSPointFromCGPoint(CGPointZero)];
     [window makeKeyAndOrderFront:self];
@@ -95,11 +96,12 @@
 {
     NSIndexSet *selected = [tableView selectedRowIndexes];
     NSArray <Tag *> *selectedTags =  [self.tags filter:^BOOL(Tag *link) {
-                NSInteger index = [self.tags indexOfObject:link];
-                return [selected containsIndex:index];
+        NSInteger index = [self.tags indexOfObject:link];
+        return [selected containsIndex:index];
     }];
 
-
+    // Pull out all the links which have tags which are selected
+    // these are then bound to the UI
     self.activeLinks = [self.allLinks filter:^BOOL(Link *link) {
         for (Tag *tag in selectedTags) {
             if ([link.tags containsObject:tag.name]) {
@@ -109,6 +111,7 @@
         return NO;
     }];
 
+    // So we can toggle the make dashboard buttons
     self.hasActiveLinks = self.activeLinks.count > 0;
 }
 
@@ -121,7 +124,7 @@
     webVC.debug = YES;
 
     NSWindow *window = [NSWindow windowWithContentViewController:webVC];
-    CGSize size = [NSScreen mainScreen].frame.size;
+    CGSize size = window.screen.frame.size;
     [window setContentSize: CGSizeMake(size.width/2, size.height)];
     [window setFrameOrigin:NSPointFromCGPoint(CGPointMake(size.width/2, 0))];
 

@@ -41,7 +41,7 @@
           NSArray *rows = [NSArray arrayWithContentsOfCSVURL:[NSURL fileURLWithPath:path]];
 
           NSInteger nameIndex = [rows[0] indexOfObject:@"name"];
-          NSInteger tagIndex = [rows[0] indexOfObject:@"tag"];
+          NSInteger tagIndex  = [rows[0] indexOfObject:@"tag"];
           NSInteger hrefIndex = [rows[0] indexOfObject:@"href"];
           NSInteger typeIndex = [rows[0] indexOfObject:@"type"];
           NSInteger timeIndex = [rows[0] indexOfObject:@"time (hours)"];
@@ -54,7 +54,7 @@
               }
 
             Link *link = [Link linkWithHref:row[hrefIndex]
-                                       time:[row[timeIndex] doubleValue]
+                                       time:(row[timeIndex] && [row[timeIndex] doubleValue]) || 1
                                        tags:row[tagIndex]
                                        type:row[typeIndex]
                                        name:row[nameIndex]];

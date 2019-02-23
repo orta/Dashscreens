@@ -10,6 +10,12 @@
 #import "Link.h"
 
 @interface ScreenViewController : NSViewController
+
 @property NSArray<Link *> *links;
+
 @property BOOL debug;
+
+@property (copy) NSNumber *preferredScreenDeviceID;
+
+
 @end

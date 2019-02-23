@@ -65,16 +65,6 @@
     [self showNextLink];
 }
 
-- (Link *)linkForURL:(NSString *)href
-{
-    for (Link *link in self.links) {
-        if ([link.href isEqualToString:href]) {
-            return link;
-        }
-    }
-    return nil;
-}
-
 - (void)replaceLink:(Link *)link withLinks:(NSArray <Link *>*)links
 {
     NSInteger index = [self.links indexOfObject:link];
@@ -105,7 +95,7 @@
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
 {
-    Link *link = self.frontLink;//[self linkForURL:webView.URL.absoluteString];
+    Link *link = self.frontLink;
 
     // We want to expand all of the individual pages from a project root for a galleries.io link
     // so that we can be lazy, and just say the main project.

@@ -961,7 +961,6 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="newHalfWindow:" target="9NA-TW-0fc" id="bOm-gg-yFb"/>
                             <binding destination="9NA-TW-0fc" name="enabled" keyPath="self.hasActiveLinks" id="ncd-LU-fLV"/>
                         </connections>
                     </button>
@@ -971,9 +970,11 @@
                         <buttonCell key="cell" type="push" title="Half left" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LWn-BI-YEu">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <connections>
+                                <action selector="newHalfWindowLeft:" target="9NA-TW-0fc" id="Iie-tk-ct0"/>
+                            </connections>
                         </buttonCell>
                         <connections>
-                            <action selector="newHalfWindowRight:" target="9NA-TW-0fc" id="92S-XM-cDT"/>
                             <binding destination="9NA-TW-0fc" name="enabled" keyPath="self.hasActiveLinks" id="e0v-rq-FLR"/>
                         </connections>
                     </button>

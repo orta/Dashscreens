@@ -16,10 +16,6 @@
 /// The main window for setting up your dashboards
 @property (weak) IBOutlet NSWindow *prefsWindow;
 
-- (IBAction)newHalfWindow:(id)sender;
-
-@property (assign) BOOL writableMode;
-
 /// What is the full set?
 @property NSArray<Link *> *allLinks;
 /// What is derived from the selected tags?
