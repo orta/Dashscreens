@@ -8,6 +8,7 @@
 
 #import "ScreenViewController.h"
 #import <WebKit/WebKit.h>
+#import "Extensions.h"
 
 @interface WKPreferences (WKPrivate)
 @property (nonatomic, setter=_setDeveloperExtrasEnabled:) BOOL _developerExtrasEnabled;
@@ -52,8 +53,32 @@
     self.frontWebView = webview;
     self.backWebView = webview2;
 
+    // It's weird, but this ensures both of the webviews work
     self.index = -1;
     [self showNextLink];
+    self.index = -1;
+    [self showNextLink];
+}
+
+- (Link *)linkForURL:(NSString *)href
+{
+    for (Link *link in self.links) {
+        if ([link.href isEqualToString:href]) {
+            return link;
+        }
+    }
+    return nil;
+}
+
+- (void)replaceLink:(Link *)link withLinks:(NSArray <Link *>*)links
+{
+    NSInteger index = [self.links indexOfObject:link];
+    if (index != NSNotFound) {
+        NSMutableArray <Link *>*mutableLinks = self.links.mutableCopy;
+        [mutableLinks removeObjectAtIndex:index];
+        [mutableLinks addObjectsFromArray:links];
+        self.links = [NSArray arrayWithArray:mutableLinks];
+    }
 }
 
 - (id)processPool
@@ -71,6 +96,37 @@
         [webView loadRequest:navigationAction.request];
     }
     return nil;
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation
+{
+    Link *link = [self linkForURL:webView.URL.absoluteString];
+
+    // We want to expand all of the individual pages from a project root for a galleries.io link
+    // so that we can be lazy, and just say the main project.
+    //
+
+    if ([link.type isEqualToString:@"gallery project root"]) {
+        // This page is JS rendered, so we need to give time for that to happen
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+            // throw this into safari's inspector to see what it does
+            NSString *jsToGetData = @"Array.from(document.querySelectorAll('.thumbnail-item')).map(thumbnail => ({ name: thumbnail.querySelector('.file-name input').value, href: thumbnail.querySelector('a').href}) )";
+
+            [webView evaluateJavaScript:jsToGetData completionHandler:^(id _Nullable value, NSError * _Nullable error) {
+                NSLog(@"Got new pages:  %@", value);
+                // It's an array of { name: string, href: string }
+                if (value){
+                    NSArray <Link *> *links = [value map:^id(id obj) {
+                        return [Link linkWithHref:obj[@"href"] time:5 tags:[link.tags componentsJoinedByString:@" "] type:@"page" name:obj[@"name"]];
+                    }];
+
+                    [self replaceLink:link withLinks:links];
+                    [self showNextLink];
+                }
+            }];
+        });
+    }
 }
 
 // Flips between two WKWebViews that keeps the data
@@ -96,6 +152,7 @@
     NSLog(@"on: %@", self.backWebView);
     if (!self.debug) {
         // the 4 is loading time
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showNextLink) object:nil];
         [self performSelector:@selector(showNextLink) withObject:nil afterDelay:link.time + 4];
     }
 

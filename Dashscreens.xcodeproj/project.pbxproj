@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A2F27CC2220DEA1004998DF /* Tag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F27CB2220DEA1004998DF /* Tag.m */; };
 		606B3B0321010D9F00B8314C /* Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 606B3B0221010D9F00B8314C /* Extensions.m */; };
 		6088E34F210102E2008E1EF3 /* ScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6088E34D210102E2008E1EF3 /* ScreenViewController.m */; };
 		6088E350210102E2008E1EF3 /* ScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6088E34E210102E2008E1EF3 /* ScreenViewController.xib */; };
@@ -17,9 +18,14 @@
 		60CD522A20E16EBA00A94DE0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 60CD522820E16EBA00A94DE0 /* MainMenu.xib */; };
 		60CD522D20E16EBA00A94DE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 60CD522C20E16EBA00A94DE0 /* main.m */; };
 		60CD523620E1710600A94DE0 /* PrefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 60CD523520E1710600A94DE0 /* PrefsController.m */; };
+		A134DCA8BC748A371F7FA43E /* libPods-Dashscreens.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 197B6564BD28C4A1F8618AD3 /* libPods-Dashscreens.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		197B6564BD28C4A1F8618AD3 /* libPods-Dashscreens.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Dashscreens.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A2F27CA2220DEA1004998DF /* Tag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tag.h; sourceTree = "<group>"; };
+		3A2F27CB2220DEA1004998DF /* Tag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tag.m; sourceTree = "<group>"; };
+		57EB058DB08771291C9BED5B /* Pods-Dashscreens.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dashscreens.release.xcconfig"; path = "Target Support Files/Pods-Dashscreens/Pods-Dashscreens.release.xcconfig"; sourceTree = "<group>"; };
 		606B3B0121010D9E00B8314C /* Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Extensions.h; sourceTree = "<group>"; };
 		606B3B0221010D9F00B8314C /* Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Extensions.m; sourceTree = "<group>"; };
 		6088E34C210102E2008E1EF3 /* ScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScreenViewController.h; sourceTree = "<group>"; };
@@ -39,6 +45,7 @@
 		60CD522E20E16EBA00A94DE0 /* Dashscreens.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dashscreens.entitlements; sourceTree = "<group>"; };
 		60CD523420E1710600A94DE0 /* PrefsController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefsController.h; sourceTree = "<group>"; };
 		60CD523520E1710600A94DE0 /* PrefsController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrefsController.m; sourceTree = "<group>"; };
+		64F745C35E9805F14B964A46 /* Pods-Dashscreens.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dashscreens.debug.xcconfig"; path = "Target Support Files/Pods-Dashscreens/Pods-Dashscreens.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A134DCA8BC748A371F7FA43E /* libPods-Dashscreens.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +65,8 @@
 			children = (
 				60CD522220E16EB800A94DE0 /* Dashscreens */,
 				60CD522120E16EB800A94DE0 /* Products */,
+				D4714DC106F4DA41FC99454A /* Pods */,
+				C60C2D35FB35F83A55A86BCA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -89,8 +99,27 @@
 				6088E355210104D8008E1EF3 /* Link.m */,
 				606B3B0121010D9E00B8314C /* Extensions.h */,
 				606B3B0221010D9F00B8314C /* Extensions.m */,
+				3A2F27CA2220DEA1004998DF /* Tag.h */,
+				3A2F27CB2220DEA1004998DF /* Tag.m */,
 			);
 			path = Dashscreens;
+			sourceTree = "<group>";
+		};
+		C60C2D35FB35F83A55A86BCA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				197B6564BD28C4A1F8618AD3 /* libPods-Dashscreens.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4714DC106F4DA41FC99454A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				64F745C35E9805F14B964A46 /* Pods-Dashscreens.debug.xcconfig */,
+				57EB058DB08771291C9BED5B /* Pods-Dashscreens.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -100,6 +129,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 60CD523120E16EBA00A94DE0 /* Build configuration list for PBXNativeTarget "Dashscreens" */;
 			buildPhases = (
+				7D37FD3F0C4547A608A11B25 /* [CP] Check Pods Manifest.lock */,
 				60CD521C20E16EB800A94DE0 /* Sources */,
 				60CD521D20E16EB800A94DE0 /* Frameworks */,
 				60CD521E20E16EB800A94DE0 /* Resources */,
@@ -163,6 +193,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7D37FD3F0C4547A608A11B25 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Dashscreens-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		60CD521C20E16EB800A94DE0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -172,6 +227,7 @@
 				6088E356210104D8008E1EF3 /* Link.m in Sources */,
 				6088E353210104BC008E1EF3 /* APIController.m in Sources */,
 				606B3B0321010D9F00B8314C /* Extensions.m in Sources */,
+				3A2F27CC2220DEA1004998DF /* Tag.m in Sources */,
 				60CD522520E16EB800A94DE0 /* AppDelegate.m in Sources */,
 				60CD523620E1710600A94DE0 /* PrefsController.m in Sources */,
 				6088E34F210102E2008E1EF3 /* ScreenViewController.m in Sources */,
@@ -303,6 +359,7 @@
 		};
 		60CD523220E16EBA00A94DE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64F745C35E9805F14B964A46 /* Pods-Dashscreens.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Dashscreens/Dashscreens.entitlements;
@@ -322,6 +379,7 @@
 		};
 		60CD523320E16EBA00A94DE0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57EB058DB08771291C9BED5B /* Pods-Dashscreens.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Dashscreens/Dashscreens.entitlements;

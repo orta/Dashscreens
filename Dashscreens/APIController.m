@@ -8,6 +8,8 @@
 
 #import "APIController.h"
 #import "Extensions.h"
+#import <Keys/DashscreensKeys.h>
+#import "Tag.h"
 
 @implementation APIController
 
@@ -18,22 +20,14 @@
 
 - (void)getLinksFromTeamNav
 {
-    NSString *query = @"{ links { href time tags } }";
+    NSString *query = @"{ links { href time tags type name } }";
     NSString *safeQuery =  [query stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 
     NSURL *URL = [NSURL URLWithString:[@"https://team.artsy.net/api?query=" stringByAppendingString:safeQuery]];
-//    NSURL *URL = [NSURL URLWithString:[@"http:/localhost:3000/api?query=" stringByAppendingString:safeQuery]];
-
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-    NSString *secret = [[NSProcessInfo processInfo] environment][@"TEAM_NAV_SECRET"];
-    if(!secret) {
-        @throw @"You need to set TEAM_NAV_SECRET in your Scheme env";
-        // cmd + shift + ,
-        // then edit environment
-    }
 
-//    [request setValue:@"" forHTTPHeaderField:@"secret"];
-    [request setValue:secret forHTTPHeaderField:@"secret"];
+    DashscreensKeys *keys = [[DashscreensKeys alloc] init];
+    [request setValue:keys.teamNavSecret forHTTPHeaderField:@"secret"];
 
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
@@ -54,17 +48,29 @@
                       NSLog(@"Query ERR: %@", results[@"errors"]);
 
                   } else if(results[@"data"][@"links"]) {
-                      self.links = [results[@"data"][@"links"] map:^id(id obj) {
+                      self.prefs.allLinks = [results[@"data"][@"links"] map:^id(id obj) {
                           BOOL canGetTime = (obj[@"time"] && obj[@"time"] != [NSNull null]);
                           CGFloat time = canGetTime ? [obj[@"time"] doubleValue] : 5;
-                          return [Link linkWithHref:obj[@"href"] time:time tags:obj[@"tags"]];
+                          return [Link linkWithHref:obj[@"href"] time:time tags:obj[@"tags"] type:obj[@"type"] name:obj[@"name"]];
                       }];
 
-                      self.hasLinks = YES;
+                      self.prefs.hasLinks = YES;
+                      NSMutableSet *tagSet = [NSMutableSet set];
+                      [self.prefs.allLinks enumerateObjectsUsingBlock:^(Link * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                          [tagSet addObjectsFromArray:obj.tags];
+                      }];
+
+                      NSArray<NSString *> *tagNames = [[tagSet allObjects] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+
+                      self.prefs.tags = [tagNames map:^id(NSString *tag) {
+                          BOOL isSelected = [[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"selected-%@", tag]];
+                          return [Tag tagWithName:tag selected:isSelected];
+                      }];
                   }
               }
           }
       }];
+
 
     [task resume];
 }

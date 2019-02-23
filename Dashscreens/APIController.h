@@ -8,12 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "Link.h"
+#import "Tag.h"
+#import "PrefsController.h"
 
 @interface APIController : NSObject
 
 - (void)getLinksFromTeamNav;
 
-@property NSArray<Link *> *links;
-@property BOOL hasLinks;
+@property (weak) IBOutlet PrefsController *prefs;
 
 @end

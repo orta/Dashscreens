@@ -26,21 +26,19 @@
     [self.prefsWindow becomeFirstResponder];
 }
 
-
 - (NSArray <Link*> *)filteredLinks
 {
-    return [self.api.links filter:^BOOL(Link *link) {
+    return [self.allLinks filter:^BOOL(Link *link) {
         NSArray *tags = [self.tagsTextField.stringValue componentsSeparatedByString:@" "];
         for (NSString *tag in tags) {
             for (NSString *linkTag in link.tags) {
-                if([linkTag isEqualToString:tag]) {
+                if ([linkTag isEqualToString:tag]) {
                     return YES;
                 }
             }
         }
         return NO;
     }];
-//    return self.api.links;
 }
 
 - (IBAction)newHalfWindow:(id)sender
@@ -57,7 +55,7 @@
 - (NSWindow *)generateWindow
 {
     ScreenViewController *webVC = [[ScreenViewController alloc] init];
-    webVC.links = [self filteredLinks];
+    webVC.links = self.activeLinks;
     webVC.debug = self.writableMode;
 
     NSWindow *window = [NSWindow windowWithContentViewController:webVC];
@@ -88,6 +86,23 @@
     [window setFrameOrigin:NSPointFromCGPoint(CGPointZero)];
     [window makeKeyAndOrderFront:self];
     [window makeFirstResponder:window];
+}
+
+
+- (void)tableViewSelectionDidChange:(NSNotification *)notification
+{
+    NSTableView *tableview = [notification object];
+    NSIndexSet *selected = [tableview selectedRowIndexes];
+
+
+
+    self.activeLinks = [self.allLinks filter:^BOOL(Link *link) {
+        NSInteger index = [self.allLinks indexOfObject:link];
+        return [selected containsIndex:index];
+    }];
+
+
+
 }
 
 @end
