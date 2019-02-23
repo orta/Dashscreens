@@ -5,7 +5,7 @@
 
 @implementation NSScreen (DisplayInfo)
 
--(NSString *) displayName
+- (NSString *)displayName
 {
     CGDirectDisplayID displayID = [[self displayID] intValue];
 
@@ -21,7 +21,7 @@
     return screenName;
 }
 
--(NSNumber *) displayID
+- (NSNumber *)displayID
 {
     return [[self deviceDescription] valueForKey:@"NSScreenNumber"];
 }

@@ -4,7 +4,7 @@
 
 @interface NSScreen (DisplayInfo)
 
--(NSString*) displayName;
--(NSNumber*) displayID;
+-(NSString *) displayName;
+-(NSNumber *) displayID;
 
 @end

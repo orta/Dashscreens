@@ -13,7 +13,8 @@
 
 @interface APIController : NSObject
 
-- (void)getLinksFromGoogSheets;
+// Updates the Prefs controller
+- (void)getLinksFromGoogSheets:(void(^)(void))done;
 
 @property (weak) IBOutlet PrefsController *prefs;
 

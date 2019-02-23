@@ -8,14 +8,21 @@
 
 #import <Cocoa/Cocoa.h>
 #import "Link.h"
+#import "ScreenSize.h"
+#import "Tag.h"
 
 @interface ScreenViewController : NSViewController
 
+// The tags so that it can handle being updated
+@property NSArray<Tag *> *tags;
+
+// The links to loop through
 @property NSArray<Link *> *links;
 
-@property BOOL debug;
+/// What fill?
+@property ScreenSize screenSize;
 
+/// Aim to be on this screen when we can
 @property (copy) NSNumber *preferredScreenDeviceID;
-
 
 @end

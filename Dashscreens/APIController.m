@@ -18,7 +18,7 @@
 
 @implementation APIController
  
-- (void)getLinksFromGoogSheets
+- (void)getLinksFromGoogSheets:(void(^)(void))done;
 {
     DashscreensKeys *keys = [[DashscreensKeys alloc] init];
 
@@ -74,6 +74,8 @@
               BOOL isSelected = [[NSUserDefaults standardUserDefaults] boolForKey:[NSString stringWithFormat:@"selected-%@", tag]];
               return [Tag tagWithName:tag selected:isSelected];
           }];
+
+          done();
       }
     }];
     [task resume];

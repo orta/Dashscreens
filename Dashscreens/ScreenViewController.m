@@ -20,6 +20,8 @@
 @property (strong) WKWebView *backWebView;
 @property (strong) WKWebView *frontWebView;
 
+@property (strong) WKWebView *firstWebView;
+
 @property NSInteger index;
 @property Link *frontLink;
 @end
@@ -41,7 +43,9 @@
     WKWebView *webview = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:config];
     webview.UIDelegate = self;
     webview.navigationDelegate = self;
+    // So slack doesn't say unsupported
     webview.customUserAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Safari/605.1.15";
+    self.firstWebView = webview;
 
     WKWebView *webview2 = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:config];
     webview2.UIDelegate = self;
@@ -137,7 +141,6 @@
             [webView evaluateJavaScript:js completionHandler:^(id _Nullable value, NSError * _Nullable error) {}];
         });
     }
-
 }
 
 // Flips between two WKWebViews that keeps the data
@@ -146,7 +149,7 @@
 - (void)showNextLink
 {
     self.index++;
-    if (self.index + 1 == self.links.count) {
+    if (self.index + 1 >= self.links.count) {
         self.index = 0;
     }
 
@@ -159,15 +162,12 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:link.href]];
     [self.frontWebView loadRequest:request];
 
-    NSLog(@"Showing: %@", link.href);
-    NSLog(@"on: %@", self.backWebView);
+    NSLog(@"Showing: %@ on %@", link.href, @([self.backWebView isEqual:self.frontWebView] ? 2 : 1));
     self.frontLink = link;
 
-    if (!self.debug) {
-        // the 4 is loading time
-        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showNextLink) object:nil];
-        [self performSelector:@selector(showNextLink) withObject:nil afterDelay:(link.time * 60) + 4];
-    }
+    // The 4 is loading time
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(showNextLink) object:nil];
+    [self performSelector:@selector(showNextLink) withObject:nil afterDelay:(link.time * 60 * 60) + 4];
 
     // Switch the references
     WKWebView *intermediary = self.backWebView;
