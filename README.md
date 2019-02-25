@@ -33,7 +33,7 @@ will pop up a window what you can interact with.
 
 Tips:
 
-- You can bring the Dashscreen admin window up by pressing <key>cmd</key> + <key>0<key> if the app is active
+- You can bring the Dashscreen admin window up by pressing <kbd>cmd</kbd> + <kbd>0</kbd> if the app is active
 - You can't interact with the dashboard windows at all right now, so make sure you get it right :P
 
 ## The Spreadsheet
