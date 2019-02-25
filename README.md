@@ -31,6 +31,11 @@ will pop up a window what you can interact with.
   <img src="https://github.com/orta/dashscreens/blob/master/Screenshots/app_auth.png?raw=true">
 </p>
 
+Tips:
+
+- You can bring the Dashscreen admin window up by pressing <key>cmd</key> + <key>0<key> if the app is active
+- You can't interact with the dashboard windows at all right now, so make sure you get it right :P
+
 ## The Spreadsheet
 
 The google spreadsheet expects the following headings on line 0: `name`, `type`, `tag`, `href`, `time (hours)`. There is
