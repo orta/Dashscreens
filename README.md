@@ -1,8 +1,8 @@
-## A CSV-powered Mac App for Dashboards
-
 <p align="center">
   <img src="https://github.com/orta/dashscreens/blob/master/Dashscreens/Assets.xcassets/AppIcon.appiconset/icon-256.png?raw=true">
 </p>
+
+## A CSV-powered Mac App for Dashboards
 
 Aims:
 
@@ -47,3 +47,11 @@ bundle exec pod install
 
 It will ask you for some keys, the Team Nav one you can ignore. The spreadsheet url you can get by taking your spreadsheet
 and clicking the download as CSV menu item in Google Spreadsheets.
+
+## How it Works
+
+There are two main places where stuff happens:
+
+- `PrefsController` - handles requesting the CSV, updating screen layouts etc, and uses Cocoa bindings to handle displaying info on the main window. 
+- `ScreenViewController` - handles taking a list of links, and presenting them in webviews (does some fancy work to try skip loading screens.)
+
